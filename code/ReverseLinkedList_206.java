@@ -11,6 +11,8 @@ public class ReverseLinkedList_206 {
      *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
      * }
      */
+
+    // iterative version
     class Solution {
         public ListNode reverseList(ListNode head) {
             ListNode prev = null;
@@ -23,6 +25,22 @@ public class ReverseLinkedList_206 {
                 current = forward;
             }
             return prev;
+        }
+    }
+
+    // recursive version
+    class Solution {
+        public ListNode reverseList(ListNode head) {
+            return helper(head, null);
+        }
+
+        public ListNode helper(ListNode it, ListNode prev) {
+            if (null == it) {
+                return prev;
+            }
+            ListNode next = it.next;
+            it.next = prev;
+            return helper(next, it);
         }
     }
 }
