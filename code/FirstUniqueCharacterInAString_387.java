@@ -17,4 +17,21 @@ public class FirstUniqueCharacterInAString_387 {
             }
             return -1;
         }
+
+        // solved using hashmap
+
+        Map<Character, Integer> freqMap = new HashMap(s.length() * 2);
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (freqMap.containsKey(c)) {
+                freqMap.put(c, freqMap.get(c) + 1);
+            } else freqMap.put(c, 1);
+        }
+        for (int i = 0; i < s.length(); i++) {
+            int freq = freqMap.get(s.charAt(i));
+            if (freq == 1) {
+                return i;
+            }
+        }
+        return -1;
     }
